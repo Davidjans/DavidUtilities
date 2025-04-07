@@ -1,0 +1,11 @@
+{
+  "name": "com.davidjans.DavidUtilities",
+  "version": "0.0.1",
+  "displayName": "David utilities",
+  "description": "Assortment of utilities to make making editor tools easier",
+  "unity": "2022.1",
+  "author": {
+    "name": "David Janssen",
+    "url": "https://www.davidjans.nl"
+  }
+}
