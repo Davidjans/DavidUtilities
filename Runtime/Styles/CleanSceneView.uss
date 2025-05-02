@@ -1,0 +1,50 @@
+.top-bar {
+    height: 28px;
+    background-color: #2a2a2a;
+    flex-direction: row;
+    align-items: center;
+    padding: 0;
+    top: 0;
+    left: 0;
+    right: 0;
+    position: absolute;
+}
+
+.example-1 {
+    font-size: 12px;
+    color: #FFFFFF;
+}
+
+.example-2 {
+    font-size: 12px;
+    color: #E5C50B;
+    margin-left: 10px;
+}
+
+.spacer {
+    flex-grow: 1;
+}
+
+.btn {
+    height: 22px;
+    width: 90px;
+    margin-left: 6px;
+    font-size: 11px;
+    unity-text-align: center;
+    background-color: #4B4B4B;
+    border-radius: 2px;
+}
+
+.save-btn {
+    width: 110px;
+    background-color: #4a6442;
+    border-radius: 2px;
+}
+
+.btn:focus {
+    outline: none;
+}
+
+.btn:hover {
+    background-color: rgba(255,255,255,0.1);
+}

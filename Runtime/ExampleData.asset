@@ -9,11 +9,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 0}
-  m_Name: ExampleData 1
+  m_Script: {fileID: 11500000, guid: 2158adab77bf4b5594d73ac33847b389, type: 3}
+  m_Name: ExampleData
   m_EditorClassIdentifier: Assembly-CSharp-Editor::ExampleData
-  toggleState: 0
-  sliderValue: 0
-  randomInt: 0
-  randomString: 
-  guidString: 
+  exampleInt: 0
+  exampleString: 
+  exampleBool: 0
+  exampleFloat: 0
+  exampleVector2: {x: 0, y: 0}
+  examplePrefab: {fileID: 0}
+  exampleAudioCLip: {fileID: 0}

@@ -26,9 +26,9 @@ public class ExampleToolWindow : EditorWindow
             data = ScriptableObject.CreateInstance<ExampleData>();
             toggleState = true;
             sliderValue = 0.5f;
-            data.randomInt = Random.Range(0, 100);
-            data.randomString = "Hello World";
-            data.guidString = System.Guid.NewGuid().ToString();
+            data.exampleInt = Random.Range(0, 100);
+            data.exampleString = "Hello World";
+            //data.guidString = System.Guid.NewGuid().ToString();
         }
         dataEditor = Editor.CreateEditor(data);
         BuildUI();
@@ -75,8 +75,8 @@ public class ExampleToolWindow : EditorWindow
 
         Toggle linkedtoggle = ToolKitUtility.CreateLinkedToggle(
             "Linked toggle example",
-            () => data.linkedToggleExample,
-            (newValue) => { data.linkedToggleExample = newValue; },
+            () => data.exampleBool,
+            (newValue) => { data.exampleBool = newValue; },
             () => Debug.Log("Linked toggle changed")
         );
         root.Add(linkedtoggle);
@@ -229,15 +229,7 @@ public class ExampleToolWindow : EditorWindow
 
 */
 
-[CreateAssetMenu(fileName = "ExampleData", menuName = "Example/ExampleData")]
-public class ExampleData : ScriptableObject
-{
-    public int randomInt;
-    public string randomString;
-    public string guidString;
-    public bool linkedToggleExample;
-    
-}
+
 /*#if UNITY_EDITOR
 [CustomEditor(typeof(ExampleData))]
 public class ExampleDataEditor : Editor
