@@ -1,0 +1,25 @@
+/* Default.uss */
+:root {
+    font-size: 14px;
+    color: #000;
+}
+Label {
+    color: #000;
+    margin-bottom: 4px;
+}
+Button {
+    background-color: #CCCCCC;
+    color: #000;
+    border: 1px solid #AAA;
+    border-radius: 2px;
+    padding: 5px 10px;
+}
+Toggle, Slider {
+    margin: 4px 0;
+}
+Box {
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    padding: 5px;
+    margin-top: 5px;
+}
