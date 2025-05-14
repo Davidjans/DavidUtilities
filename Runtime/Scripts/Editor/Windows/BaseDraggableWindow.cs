@@ -38,18 +38,17 @@ public class BaseDraggableWindow : VisualElement
         }
     }
 
-    public string  Title      { get; set; }
+    public string Title { get; set; }
     public Vector2 WindowSize { get; set; }
     public Vector2 WindowPos  { get; set; }
     public UnityEngine.Object objectToDirty;
     public event Action OnClosed;
     public event Action OnOpened;
 
-    VisualElement   m_Header;
-    bool    m_Dragging;
-    bool    m_IsDragging;
+    VisualElement m_Header;
+    bool m_Dragging;
+    bool m_IsDragging;
     Vector2 m_PointerOffset;
-    
     protected VisualElement Content { get; private set; }
 
     public BaseDraggableWindow()
@@ -64,6 +63,16 @@ public class BaseDraggableWindow : VisualElement
         WindowPos  = pos;
     }
 
+    protected StyleSheet GetDefaultDraggableStyle()
+    {
+        var sheet = Resources.Load<StyleSheet>("Styles/DefaultDraggableStyle");
+        if (sheet == null)
+        {
+            Debug.LogWarning("DefaultDraggableStyle.uss not found in Resources folder.");
+        }
+        return sheet;
+    }
+
     protected void InitializeWindow()
     {
         Build();
@@ -71,27 +80,31 @@ public class BaseDraggableWindow : VisualElement
 
     void Build()
     {
+        var defaultStyle = GetDefaultDraggableStyle();
+        if (defaultStyle != null)
+        {
+            styleSheets.Add(defaultStyle);
+        }
+
         style.position      = Position.Absolute;
         style.left          = WindowPos.x;
         style.top           = WindowPos.y;
         style.width         = WindowSize.x;
         style.height        = new StyleLength(StyleKeyword.Auto);
-        
-        style.backgroundColor= new Color(0.2f, 0.2f, 0.2f);
-        style.borderTopWidth = style.borderBottomWidth = 
+        style.backgroundColor = new Color(0.2f, 0.2f, 0.2f);
+        style.borderTopWidth = style.borderBottomWidth =
             style.borderLeftWidth = style.borderRightWidth = 1;
         style.borderTopColor = style.borderBottomColor =
             style.borderLeftColor = style.borderRightColor = Color.black;
-        
         style.maxHeight     = WindowSize.y;
         style.minHeight     = 0;
         AddToClassList("base-window");
 
         m_Header = new VisualElement { name = "header" };
         m_Header.AddToClassList("window-header");
-        m_Header.style.flexDirection   = FlexDirection.Row;
-        m_Header.style.alignItems      = Align.Center;
-        m_Header.style.justifyContent  = Justify.SpaceBetween;
+        m_Header.style.flexDirection  = FlexDirection.Row;
+        m_Header.style.alignItems     = Align.Center;
+        m_Header.style.justifyContent = Justify.SpaceBetween;
         m_Header.style.height         = 24;
         Add(m_Header);
 
@@ -133,36 +146,28 @@ public class BaseDraggableWindow : VisualElement
     void OnHeaderMouseDown(MouseDownEvent e)
     {
         if (e.button != 0) return;
-
         var left = style.left.value.value;
         var top  = style.top.value.value;
         m_PointerOffset = e.mousePosition - new Vector2(left, top);
-
         m_IsDragging = true;
-
         m_Header.CaptureMouse();
-
         e.StopPropagation();
     }
 
     void OnHeaderMouseMove(MouseMoveEvent e)
     {
         if (!m_IsDragging) return;
-
         var global = e.mousePosition;
         style.left = global.x - m_PointerOffset.x;
         style.top  = global.y - m_PointerOffset.y;
-
         e.StopPropagation();
     }
 
     void OnHeaderMouseUp(EventBase e)
     {
         if (!m_IsDragging) return;
-
         m_IsDragging = false;
         m_Header.ReleaseMouse();
-
         e.StopPropagation();
     }
 
@@ -180,6 +185,7 @@ public class BaseDraggableWindow : VisualElement
         });
         Content.Add(field);
     }
+
     protected void AddObjectField<T>(
         string label,
         Func<T> getter,
@@ -191,18 +197,15 @@ public class BaseDraggableWindow : VisualElement
             objectType        = typeof(T),
             allowSceneObjects = false
         };
-
         field.value = (UnityEngine.Object)getter();
-
         field.RegisterValueChangedCallback((ChangeEvent<UnityEngine.Object> evt) =>
         {
             setter(evt.newValue as T);
             MarkDirty();
         });
-
         Content.Add(field);
     }
-    
+
     protected void AddPropertyField(string propertyName, string label , SerializedObject serializedObject)
     {
         var prop = serializedObject.FindProperty(propertyName);
@@ -216,7 +219,7 @@ public class BaseDraggableWindow : VisualElement
         field.Bind(serializedObject);
         Content.Add(field);
     }
-    
+
     protected void MarkDirty(UnityEngine.Object obj = null)
     {
         if (obj == null)
