@@ -1,0 +1,66 @@
+/* In /Assets/Editor/GenericImporter/ImporterExampleStyles.uss */
+
+/* This new class creates the distinct boxes for each section */
+.importer-section {
+    background-color: #454545;
+    border-radius: 4px;
+    padding: 10px;
+    margin: 10px;
+}
+
+/* This targets the HelpBox at the very top */
+.unity-help-box:first-of-type {
+    margin: 10px 10px 0 10px;
+}
+
+.importer-section > .unity-label {
+    -unity-font-style: bold;
+    margin-bottom: 8px;
+    font-size: 14px;
+}
+
+/* --- Tab Bar Styling --- */
+.tab-bar {
+    flex-direction: row; /* This ensures the buttons are horizontal */
+    height: 25px;
+    margin-bottom: 10px;
+}
+
+.tab-bar > .unity-button {
+    flex-grow: 1;
+    /* Style for the INACTIVE tabs */
+    background-color: #383838;
+    border-color: #2F2F2F;
+    border-width: 1px;
+    border-bottom-width: 0;
+    border-radius: 3px 3px 0 0;
+    margin: 0 -1px -1px -1px; /* Overlap borders slightly */
+    color: #a0a0a0;
+}
+
+/* Style for the ACTIVE tab */
+.tab-bar > .unity-button.active {
+    background-color: transparent; /* Makes it blend with the section background */
+    border-bottom-width: 0;
+    border-color: #2F2F2F;
+    color: white;
+}
+
+/* --- Other Elements --- */
+#file-path-label {
+    margin-top: 5px;
+    -unity-font-style: italic;
+    color: grey;
+}
+
+#create-button {
+    height: 35px;
+    font-size: 16px;
+    -unity-font-style: bold;
+}
+
+#status-label {
+    margin-top: 8px;
+    -unity-font-style: italic;
+    color: grey;
+}

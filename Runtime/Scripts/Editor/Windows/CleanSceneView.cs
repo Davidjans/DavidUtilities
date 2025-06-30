@@ -10,7 +10,7 @@ public class CleanSceneView : SceneView
     static StyleSheet s_StyleSheet;
     const string k_UssPath = "Assets/DavidUtilities/Runtime/Styles/CleanSceneView.uss";
 
-    [MenuItem("Window/Clean Scene View")]
+    [MenuItem("Tools/Clean Scene View")]
     public static void OpenWindow()
     {
         GetWindow<CleanSceneView>().titleContent = new GUIContent("Clean Scene");

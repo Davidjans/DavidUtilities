@@ -1,0 +1,70 @@
+/* In /Assets/Editor/SO_EditorExample/SO_EditorExampleStyles.uss */
+
+/* Using variables makes the stylesheet easier to theme */
+:root {
+    --color-background-main: #383838;
+    --color-background-pane: #454545;
+    --color-background-selected: #4270B4; /* Unity's selection blue */
+    --color-border: #2D2D2D;
+    --color-text-header: #E0E0E0;
+    --color-text-muted: #9A9A9A;
+}
+
+/* --- Main Layout --- */
+#main-container {
+    flex-direction: row;
+    flex-grow: 1;
+}
+
+#left-pane {
+    min-width: 200px;
+    max-width: 350px;
+    background-color: var(--color-background-main);
+    border-right-width: 1px;
+    border-color: var(--color-border);
+}
+
+#right-pane {
+    flex-grow: 1;
+    background-color: var(--color-background-pane);
+    padding: 10px;
+}
+
+/* --- List View Styling --- */
+#item-list-view .unity-list-view__item {
+    padding: 8px 12px;
+    border-bottom-width: 1px;
+    border-color: var(--color-border);
+}
+
+#item-list-view .unity-list-view__item:hover {
+    background-color: var(--color-background-light);
+}
+
+#item-list-view .unity-list-view__item--selected {
+    background-color: var(--color-background-selected);
+    color: white;
+}
+
+/* --- Details Panel Styling --- */
+#details-title {
+    font-size: 20px;
+    -unity-font-style: bold;
+    color: var(--color-text-header);
+    margin-bottom: 10px;
+    padding-bottom: 5px;
+    border-bottom-width: 2px;
+    border-color: var(--color-background-main);
+}
+
+#empty-state-label {
+    flex-grow: 1;
+    -unity-text-align: middle-center;
+    color: var(--color-text-muted);
+    font-size: 16px;
+}
+
+/* Add a bit of space between property fields for readability */
+.unity-property-field {
+    margin-bottom: 5px;
+}

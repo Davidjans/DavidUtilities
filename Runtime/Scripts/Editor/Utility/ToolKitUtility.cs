@@ -32,14 +32,6 @@ public static class ToolKitUtility
         });
         return slider;
     }
-    /// <summary>
-    /// The linked toggle will always change the bool it was originally given instead of creating a seperate variable.
-    /// </summary>
-    /// <param name="title"></param>
-    /// <param name="getValue"> () => boolName    To assign the link the variable</param>
-    /// <param name="setValue"> (newValue) => { boolName = newValue; }      To set the value of the linked variable</param>
-    /// <param name="toggleAction"></param>
-    /// <returns></returns>
     public static Toggle CreateLinkedToggle(string title ,Func<bool> getValue, Action<bool> setValue, Action toggleAction)
     {
         Toggle toggle = new Toggle(title)
@@ -80,15 +72,6 @@ public static class ToolKitUtility
         return button;
     }
     
-    /// <summary>
-    /// Creates a field to drop a scriptable object in. To either be edited in the inspector or just to grab the data from.
-    /// </summary>
-    /// <param name="title"></param>
-    /// <param name="objectType"></param>
-    /// <param name="defaultValue"></param>
-    /// <param name="dataEditor">Technically not necesarry but will cause issues with redo and undo if not present</param>
-    /// <param name="rootVisualElement"> Technically not necesarry but will cause issues with redo and undo if not present</param>
-    /// <returns></returns>
     public static ObjectField CreateObjectField(string title = "Select Object", System.Type objectType = null, Object defaultValue = null, Editor dataEditor = null, VisualElement rootVisualElement = null )
     {
         ObjectField objectField = new ObjectField(title)
@@ -149,11 +132,6 @@ public static class ToolKitUtility
         }
     }
     
-    /// <summary>
-    /// Creates a fully‑automated UIElements inspector for the given Editor.
-    /// The returned VisualElement is bound to editor.serializedObject and
-    /// will pick up any USS styles applied to its parent.
-    /// </summary>
     public static VisualElement CreateInlineEditor(Editor editor)
     {
         var container = new VisualElement();
